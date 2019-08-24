@@ -1,4 +1,15 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
+
+export const FillParent = styled.div`
+  height: 100%;
+  width: 100%;
+`
+
+export const CenterContent = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`
 
 export const GlobalStyles = createGlobalStyle`
   *,
