@@ -41,6 +41,7 @@ export default function Board(props: BoardProps) {
           )}
           {postDetails && (
             <PostDetails
+              coordinates={props.coordinates}
               post={postDetails}
               onExit={() => {
                 setPostDetails(null)

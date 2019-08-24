@@ -10,6 +10,11 @@ export const getNearbyPosts = gql`
       id
       content
       createdAt
+      children {
+        id
+        content
+        createdAt
+      }
     }
   }
 `
@@ -20,6 +25,11 @@ export const createPost = gql`
       id
       content
       createdAt
+      children {
+        id
+        content
+        createdAt
+      }
     }
   }
 `

@@ -7,4 +7,5 @@ export interface Post {
   id: string
   content: string
   createdAt: string
+  children: Post[]
 }

@@ -16,6 +16,7 @@ export const typeDefs = gql`
     id: ID
     content: String
     createdAt: Date
+    children: [Post]
   }
 
   input PostQuery {

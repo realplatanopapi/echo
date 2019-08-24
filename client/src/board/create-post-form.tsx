@@ -23,6 +23,7 @@ export default function CreatePostForm(props: CreatePostFormProps) {
               content,
               latitude: props.coordinates.latitude,
               longitude: props.coordinates.longitude,
+              parentId: props.parentPostId,
             },
           },
         })
@@ -39,13 +40,14 @@ export default function CreatePostForm(props: CreatePostFormProps) {
       <button type="submit" disabled={isSubmitDisabled}>
         {loading ? 'loading...' : 'dispatch'}
       </button>
-      <button onClick={props.onCancel}>cancel</button>
+      {props.onCancel && <button onClick={props.onCancel}>cancel</button>}
     </Form>
   )
 }
 
 interface CreatePostFormProps {
   coordinates: Coordinates
-  onCancel: () => any
+  parentPostId?: string
   onSubmit: (post: Post) => void
+  onCancel?: () => any
 }
