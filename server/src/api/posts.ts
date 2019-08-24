@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-koa'
 
 import { PostInput, createPost, getNearbyPosts, PostQuery } from '../lib/posts'
-import Post from '../entities/post'
+import Post from '../models/post'
 
 export const typeDefs = gql`
   extend type Query {

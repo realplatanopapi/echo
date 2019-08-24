@@ -1,7 +1,7 @@
 import { createConnection } from 'typeorm'
 
 import config from './config'
-import entities from './entities'
+import models from './models'
 
 export function connect() {
   const dbUrl = config.get('dbUrl')
@@ -9,6 +9,6 @@ export function connect() {
     type: 'postgres',
     url: dbUrl,
     synchronize: true,
-    entities,
+    entities: models,
   })
 }

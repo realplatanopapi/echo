@@ -1,7 +1,7 @@
 import { getBoundsOfDistance } from 'geolib'
 import { getRepository } from 'typeorm'
 
-import Post from '../entities/post'
+import Post from '../models/post'
 
 // Max distance of posts to get, in meters
 const postDistance = 1500
