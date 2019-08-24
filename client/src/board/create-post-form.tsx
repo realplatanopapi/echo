@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { createPost as createPostMutation } from './api'
-import { Coordinates } from './types'
+import { createPost as createPostMutation } from '../api'
+import { Coordinates } from '../types'
 
 export default function CreatePostForm(props: CreatePostFormProps) {
   const [createPost, { loading, error, data }] = useMutation(createPostMutation)

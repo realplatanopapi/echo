@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Post } from './types'
+import { Post } from '../types'
 
 export default function Posts(props: PostsProps) {
   if (props.posts.length === 0) {
