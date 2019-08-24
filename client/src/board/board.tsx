@@ -13,36 +13,42 @@ export default function Board(props: BoardProps) {
 
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <button
-          onClick={() => {
-            setIsCreatingPost(true)
-          }}
-        >
-          create post
-        </button>
-        {isCreatingPost && (
-          <CreatePostForm
-            coordinates={props.coordinates}
-            onCancel={() => {
-              setIsCreatingPost(false)
+      <div
+        style={{
+          position: 'absolute',
+        }}
+      >
+        <Suspense fallback={<Loading />}>
+          <button
+            onClick={() => {
+              setIsCreatingPost(true)
             }}
-            onSubmit={post => {
-              setIsCreatingPost(false)
-              setPostDetails(post)
-              props.onCreatePost()
-            }}
-          />
-        )}
-        {postDetails && (
-          <PostDetails
-            post={postDetails}
-            onExit={() => {
-              setPostDetails(null)
-            }}
-          />
-        )}
-      </Suspense>
+          >
+            create post
+          </button>
+          {isCreatingPost && (
+            <CreatePostForm
+              coordinates={props.coordinates}
+              onCancel={() => {
+                setIsCreatingPost(false)
+              }}
+              onSubmit={post => {
+                setIsCreatingPost(false)
+                setPostDetails(post)
+                props.onCreatePost()
+              }}
+            />
+          )}
+          {postDetails && (
+            <PostDetails
+              post={postDetails}
+              onExit={() => {
+                setPostDetails(null)
+              }}
+            />
+          )}
+        </Suspense>
+      </div>
       <Posts
         posts={props.posts}
         onPostClick={post => {
