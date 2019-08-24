@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState } from 'react'
 import styled from 'styled-components'
 
 import { Coordinates } from './types'
+import Loading from './loading'
 
 const TitleScreen = React.lazy(() => import('./title-screen'))
 const Board = React.lazy(() => import('./board'))
@@ -21,7 +22,7 @@ export default function App() {
 
   return (
     <Main>
-      <Suspense fallback="loading...">
+      <Suspense fallback={Loading}>
         {coordinates ? (
           <Board coordinates={coordinates} />
         ) : (
