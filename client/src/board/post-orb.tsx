@@ -1,8 +1,8 @@
 import React from 'react'
+import { formatDistanceToNow } from 'date-fns'
 import styled from 'styled-components'
 
 import { Post } from '../types'
-import { formatDistanceToNow } from 'date-fns'
 
 const size = '1.5em'
 
