@@ -2,6 +2,7 @@ import React from 'react'
 import { formatDistanceToNow } from 'date-fns'
 
 import { Post } from '../types'
+import PostIndicator from './post-indicator'
 
 export default function Posts(props: PostsProps) {
   if (props.posts.length === 0) {
@@ -12,9 +13,7 @@ export default function Posts(props: PostsProps) {
     <ul>
       {props.posts.map(post => (
         <li key={post.id}>
-          {post.content}
-          <br />
-          {formatDistanceToNow(new Date(post.createdAt))}
+          <PostIndicator post={post} />
         </li>
       ))}
     </ul>
