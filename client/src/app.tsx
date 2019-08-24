@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <Main>
-      <Suspense fallback={Loading}>
+      <Suspense fallback={<Loading />}>
         {coordinates ? (
           <Board coordinates={coordinates} />
         ) : (

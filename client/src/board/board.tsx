@@ -13,7 +13,7 @@ export default function Board(props: BoardProps) {
 
   return (
     <>
-      <Suspense fallback={Loading}>
+      <Suspense fallback={<Loading />}>
         <button
           onClick={() => {
             setIsCreatingPost(true)
