@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
-import { createPost as createPostMutation } from '../api'
+import { createPost as createPostMutation, getNearbyPosts } from '../api'
 import { Coordinates, Post } from '../types'
 import Form from '../form'
 
@@ -26,6 +26,17 @@ export default function CreatePostForm(props: CreatePostFormProps) {
               parentId: props.parentPostId,
             },
           },
+          refetchQueries: [
+            {
+              query: getNearbyPosts,
+              variables: {
+                query: {
+                  latitude: props.coordinates.latitude,
+                  longitude: props.coordinates.longitude,
+                },
+              },
+            },
+          ],
         })
 
         setContent('')

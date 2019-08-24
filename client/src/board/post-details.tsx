@@ -25,7 +25,12 @@ export default function PostDetails(props: PostDetailsProps) {
       )}
       {props.post.children &&
         props.post.children.map(childPost => (
-          <PostDetails {...props} post={childPost} isChildPost={true} />
+          <PostDetails
+            key={childPost.id}
+            {...props}
+            post={childPost}
+            isChildPost={true}
+          />
         ))}
     </>
   )
