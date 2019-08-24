@@ -25,6 +25,7 @@ export default function PostIndicator(props: PostIndicatorProps) {
 
   return (
     <StyledPostIndicator
+      onClick={() => props.onClick(post)}
       aria-label={`view post created ${distanceToNow}`}
       tabIndex={0}
       role="button"
@@ -34,4 +35,5 @@ export default function PostIndicator(props: PostIndicatorProps) {
 
 interface PostIndicatorProps {
   post: Post
+  onClick: (post: Post) => any
 }

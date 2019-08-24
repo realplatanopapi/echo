@@ -13,7 +13,7 @@ export default function Posts(props: PostsProps) {
     <ul>
       {props.posts.map(post => (
         <li key={post.id}>
-          <PostIndicator post={post} />
+          <PostIndicator post={post} onClick={props.onPostClick} />
         </li>
       ))}
     </ul>
@@ -22,4 +22,5 @@ export default function Posts(props: PostsProps) {
 
 interface PostsProps {
   posts: Post[]
+  onPostClick: (post: Post) => any
 }
