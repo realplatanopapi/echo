@@ -54,6 +54,10 @@ export default function Board(props: BoardProps) {
         activePost={postDetails}
         posts={props.posts}
         onPostClick={post => {
+          if (postDetails === post) {
+            return setPostDetails(null)
+          }
+
           setPostDetails(post)
         }}
       />
