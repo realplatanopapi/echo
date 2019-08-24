@@ -29,7 +29,6 @@ function PostItem(props: { post: Post; onPostClick: onPostClick }) {
       return
     }
 
-    const parentBounds = (el.parentNode as HTMLElement).getBoundingClientRect()
     const coords = {
       x: 0,
       y: 0,
@@ -41,15 +40,18 @@ function PostItem(props: { post: Post; onPostClick: onPostClick }) {
     function animate() {
       requestAnimationFrame(animate)
 
+      const parentBounds = (el.parentNode as HTMLElement).getBoundingClientRect()
       const elBounds = el.getBoundingClientRect()
       if (
-        elBounds.top <= parentBounds.top ||
-        elBounds.bottom >= parentBounds.bottom
+        elBounds.top + yDirection <= parentBounds.top ||
+        elBounds.bottom + yDirection >= parentBounds.bottom
       ) {
         yDirection *= -1
-      } else if (
-        elBounds.left <= parentBounds.left ||
-        elBounds.right >= parentBounds.right
+      }
+
+      if (
+        elBounds.left + xDirection <= parentBounds.left ||
+        elBounds.right + xDirection >= parentBounds.right
       ) {
         xDirection *= -1
       }
