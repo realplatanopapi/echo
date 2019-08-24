@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+const path = require('path')
+
+const koaStatic = require('koa-static')
+
+const { start: startServer, logger } = require('../dist/server')
+
+const staticAssetsPath = path.join(__dirname, '../dist/client')
+
+startServer()
+  .then(server => {
+    server.use(koaStatic(staticAssetsPath))
+  })
+  .catch(error => {
+    logger.error(error)
+    process.exit(1)
+  })

@@ -1,0 +1,8 @@
+{
+  "extends": "@restlessbit/tsconfig",
+  "include": ["./**/*"],
+  "compilerOptions": {
+    "outDir": "../dist/server",
+    "types": ["node"]
+  }
+}

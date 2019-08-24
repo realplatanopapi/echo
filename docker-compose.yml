@@ -1,0 +1,25 @@
+version: '3'
+volumes:
+  db:
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      - PGDATA=/var/lib/postgresql/data/echo
+      - POSTGRES_DB=echo
+      - POSTGRES_USER=echo
+      - POSTGRES_PASSWORD=echo
+    volumes:
+      - db:/var/lib/postgresql/data/echo
+    ports:
+      - 4201:5432
+
+  db-ui:
+    image: sosedoff/pgweb:0.11.3
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://echo:echo@db:5432/echo?sslmode=disable
+    ports:
+      - 4202:8081
+    restart: always
