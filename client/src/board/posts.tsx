@@ -1,8 +1,7 @@
 import React from 'react'
-import { formatDistanceToNow } from 'date-fns'
 
 import { Post } from '../types'
-import PostIndicator from './post-indicator'
+import PostOrb from './post-orb'
 
 export default function Posts(props: PostsProps) {
   if (props.posts.length === 0) {
@@ -13,7 +12,7 @@ export default function Posts(props: PostsProps) {
     <ul>
       {props.posts.map(post => (
         <li key={post.id}>
-          <PostIndicator post={post} onClick={props.onPostClick} />
+          <PostOrb post={post} onClick={props.onPostClick} />
         </li>
       ))}
     </ul>
