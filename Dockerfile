@@ -1,10 +1,8 @@
 FROM node:10-alpine
 
 ARG NODE_ENV=production
-ARG PORT=80
 
 ENV NODE_ENV ${NODE_ENV}
-ENV PORT ${PORT}
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
