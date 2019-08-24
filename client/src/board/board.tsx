@@ -7,10 +7,18 @@ const CreatePostForm = lazy(() => import('./create-post-form'))
 const PostDetails = lazy(() => import('./post-details'))
 
 export default function Board(props: BoardProps) {
+  const [isCreatingPost, setIsCreatingPost] = useState(false)
   const [postDetails, setPostDetails] = useState<Post | null>(null)
 
   return (
     <>
+      <button
+        onClick={() => {
+          setIsCreatingPost(true)
+        }}
+      >
+        create post
+      </button>
       <Posts
         posts={props.posts}
         onPostClick={post => {
@@ -18,10 +26,15 @@ export default function Board(props: BoardProps) {
         }}
       />
       <Suspense fallback="loading...">
-        <CreatePostForm
-          coordinates={props.coordinates}
-          onSubmit={props.onCreatePost}
-        />
+        {isCreatingPost && (
+          <CreatePostForm
+            coordinates={props.coordinates}
+            onSubmit={() => {
+              setIsCreatingPost(false)
+              props.onCreatePost()
+            }}
+          />
+        )}
       </Suspense>
       <Suspense fallback="loading...">
         {postDetails && <PostDetails post={postDetails} />}
