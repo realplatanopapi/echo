@@ -18,6 +18,9 @@ export const GlobalStyles = createGlobalStyle`
     color: white;
     box-sizing: border-box;
     font-family: sans-serif;
+
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
   }
 
   p {
