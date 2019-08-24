@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    background: black;
+    color: white;
     box-sizing: border-box;
     font-family: sans-serif;
   }
