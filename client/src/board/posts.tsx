@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDistanceToNow } from 'date-fns'
 
 import { Post } from '../types'
 
@@ -13,7 +14,7 @@ export default function Posts(props: PostsProps) {
         <li key={post.id}>
           {post.content}
           <br />
-          {post.createdAt}
+          {formatDistanceToNow(new Date(post.createdAt))}
         </li>
       ))}
     </ul>

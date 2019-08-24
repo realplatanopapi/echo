@@ -9,6 +9,7 @@ export const getNearbyPosts = gql`
     getNearbyPosts(query: $query) {
       id
       content
+      createdAt
     }
   }
 `
@@ -18,6 +19,7 @@ export const createPost = gql`
     createPost(input: $input) {
       id
       content
+      createdAt
     }
   }
 `

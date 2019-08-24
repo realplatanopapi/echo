@@ -1,6 +1,7 @@
 import { gql, makeExecutableSchema } from 'apollo-server-koa'
 import { merge } from 'lodash'
 
+import * as scalars from './scalars'
 import * as posts from './posts'
 
 const typeDefs = gql`
@@ -19,6 +20,6 @@ const resolvers = {
 }
 
 export const schema = makeExecutableSchema({
-  typeDefs: [typeDefs, posts.typeDefs],
-  resolvers: merge(resolvers, posts.resolvers),
+  typeDefs: [typeDefs, scalars.typeDefs, posts.typeDefs],
+  resolvers: merge(resolvers, scalars.resolvers, posts.resolvers),
 })
