@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { Suspense, lazy, useState } from 'react'
 
 import { Coordinates } from './types'
-import TitleScreen from './title-screen'
-import Board from './board'
+
+const TitleScreen = React.lazy(() => import('./title-screen'))
+const Board = React.lazy(() => import('./board'))
 
 export default function App() {
   const [coordinates, setCoordinates] = useState<Coordinates>()
 
-  if (coordinates) {
-    return <Board coordinates={coordinates} />
-  } else {
-    return <TitleScreen onGetCoordinates={setCoordinates} />
-  }
+  return (
+    <Suspense fallback="loading...">
+      {coordinates ? (
+        <Board coordinates={coordinates} />
+      ) : (
+        <TitleScreen onGetCoordinates={setCoordinates} />
+      )}
+    </Suspense>
+  )
 }
