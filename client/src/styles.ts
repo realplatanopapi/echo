@@ -4,7 +4,7 @@ export const GlobalStyles = createGlobalStyle`
   *,
   *:before,
   *:after {
-    box-sizing: inherit
+    box-sizing: inherit;
   }
 
   html,
@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  h1,
   p {
     margin-top: 0;
   }
