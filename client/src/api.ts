@@ -1,5 +1,23 @@
-import ApolloClient from 'apollo-boost'
+import ApolloClient, { gql } from 'apollo-boost'
 
 export const client = new ApolloClient({
   uri: '/api',
 })
+
+export const getNearbyPosts = gql`
+  query getNearbyPosts($query: PostQuery!) {
+    getNearbyPosts(query: $query) {
+      id
+      content
+    }
+  }
+`
+
+export const createPost = gql`
+  mutation createPost($input: PostInput!) {
+    createPost(input: $input) {
+      id
+      content
+    }
+  }
+`

@@ -5,11 +5,11 @@ import Post from '../entities/post'
 
 export const typeDefs = gql`
   extend type Query {
-    getNearbyPosts(query: PostQuery): [Post]
+    getNearbyPosts(query: PostQuery!): [Post]
   }
 
   extend type Mutation {
-    createPost(input: PostInput): Post
+    createPost(input: PostInput!): Post
   }
 
   type Post {
