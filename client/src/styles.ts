@@ -26,4 +26,10 @@ export const GlobalStyles = createGlobalStyle`
   p {
     margin-top: 0;
   }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 `
