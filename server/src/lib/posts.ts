@@ -8,7 +8,18 @@ const postDistance = 1500
 
 export async function createPost(input: PostInput): Promise<Post> {
   const repo = getRepository(Post)
-  const post = repo.create(input)
+
+  const { parentId, ...postOptions } = input
+  const post = repo.create(postOptions)
+
+  if (parentId) {
+    const parentPost = await repo.findOne(parentId)
+    if (!parentPost) {
+      throw new Error(`Could not parent post with id ${parentId}`)
+    }
+    post.parent = parentPost
+  }
+
   return await repo.save(post)
 }
 
@@ -45,6 +56,7 @@ export interface PostInput {
   latitude: number
   longitude: number
   content: string
+  parentId?: string
 }
 
 export interface PostQuery {

@@ -27,6 +27,7 @@ export const typeDefs = gql`
     content: String!
     latitude: Float!
     longitude: Float!
+    parentId: ID
   }
 `
 

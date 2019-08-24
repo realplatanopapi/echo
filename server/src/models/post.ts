@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  OneToMany,
 } from 'typeorm'
 import { Length } from 'class-validator'
 
@@ -37,6 +39,12 @@ class Post {
     type: 'double precision',
   })
   longitude: number
+
+  @ManyToOne(() => Post, post => post.children)
+  parent: Post
+
+  @OneToMany(() => Post, post => post.parent)
+  children: Post[]
 }
 
 export default Post
