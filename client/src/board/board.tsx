@@ -19,12 +19,6 @@ export default function Board(props: BoardProps) {
       >
         create post
       </button>
-      <Posts
-        posts={props.posts}
-        onPostClick={post => {
-          setPostDetails(post)
-        }}
-      />
       <Suspense fallback="loading...">
         {isCreatingPost && (
           <CreatePostForm
@@ -40,6 +34,12 @@ export default function Board(props: BoardProps) {
       <Suspense fallback="loading...">
         {postDetails && <PostDetails post={postDetails} />}
       </Suspense>
+      <Posts
+        posts={props.posts}
+        onPostClick={post => {
+          setPostDetails(post)
+        }}
+      />
     </>
   )
 }
