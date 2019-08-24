@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
 import { createPost as createPostMutation } from '../api'
-import { Coordinates } from '../types'
+import { Coordinates, Post } from '../types'
 import Form from '../form'
 
 export default function CreatePostForm(props: CreatePostFormProps) {
@@ -17,7 +17,7 @@ export default function CreatePostForm(props: CreatePostFormProps) {
           return
         }
 
-        await createPost({
+        const { data } = await createPost({
           variables: {
             input: {
               content,
@@ -29,7 +29,7 @@ export default function CreatePostForm(props: CreatePostFormProps) {
 
         setContent('')
 
-        props.onSubmit()
+        props.onSubmit(data.createPost as Post)
       }}
     >
       <textarea
@@ -45,5 +45,5 @@ export default function CreatePostForm(props: CreatePostFormProps) {
 
 interface CreatePostFormProps {
   coordinates: Coordinates
-  onSubmit: () => void
+  onSubmit: (post: Post) => void
 }

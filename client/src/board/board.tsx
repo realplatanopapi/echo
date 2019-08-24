@@ -29,8 +29,9 @@ export default function Board(props: BoardProps) {
         {isCreatingPost && (
           <CreatePostForm
             coordinates={props.coordinates}
-            onSubmit={() => {
+            onSubmit={post => {
               setIsCreatingPost(false)
+              setPostDetails(post)
               props.onCreatePost()
             }}
           />
