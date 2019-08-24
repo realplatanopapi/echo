@@ -24,7 +24,8 @@ export async function getNearbyPosts(query: PostQuery): Promise<Post[]> {
   const repo = getRepository(Post)
   return await repo
     .createQueryBuilder('post')
-    .where('post.latitude >= :minLatitude', {
+    .where("post.createdAt >= now() - interval '24 hours'")
+    .andWhere('post.latitude >= :minLatitude', {
       minLatitude: min.latitude,
     })
     .andWhere('post.longitude >= :minLongitude', {
@@ -36,6 +37,7 @@ export async function getNearbyPosts(query: PostQuery): Promise<Post[]> {
     .andWhere('post.longitude <= :maxLongitude', {
       maxLongitude: max.longitude,
     })
+    .orderBy('post.createdAt', 'DESC')
     .getMany()
 }
 
