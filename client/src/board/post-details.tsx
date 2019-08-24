@@ -10,10 +10,12 @@ export default function PostDetails(props: PostDetailsProps) {
     <>
       <p>{post.content}</p>
       <p>{formatDistanceToNow(new Date(post.createdAt))}</p>
+      <button onClick={props.onExit}>close</button>
     </>
   )
 }
 
 interface PostDetailsProps {
   post: Post
+  onExit: () => any
 }

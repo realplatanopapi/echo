@@ -39,11 +39,13 @@ export default function CreatePostForm(props: CreatePostFormProps) {
       <button type="submit" disabled={isSubmitDisabled}>
         {loading ? 'loading...' : 'dispatch'}
       </button>
+      <button onClick={props.onCancel}>cancel</button>
     </Form>
   )
 }
 
 interface CreatePostFormProps {
   coordinates: Coordinates
+  onCancel: () => any
   onSubmit: (post: Post) => void
 }

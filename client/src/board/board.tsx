@@ -23,6 +23,9 @@ export default function Board(props: BoardProps) {
         {isCreatingPost && (
           <CreatePostForm
             coordinates={props.coordinates}
+            onCancel={() => {
+              setIsCreatingPost(false)
+            }}
             onSubmit={post => {
               setIsCreatingPost(false)
               setPostDetails(post)
@@ -32,7 +35,14 @@ export default function Board(props: BoardProps) {
         )}
       </Suspense>
       <Suspense fallback="loading...">
-        {postDetails && <PostDetails post={postDetails} />}
+        {postDetails && (
+          <PostDetails
+            post={postDetails}
+            onExit={() => {
+              setPostDetails(null)
+            }}
+          />
+        )}
       </Suspense>
       <Posts
         posts={props.posts}
