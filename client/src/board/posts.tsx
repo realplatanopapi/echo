@@ -12,13 +12,22 @@ export default function Posts(props: PostsProps) {
   return (
     <FillParent as="ul">
       {props.posts.map(post => (
-        <PostItem key={post.id} post={post} onPostClick={props.onPostClick} />
+        <PostItem
+          key={post.id}
+          isActive={props.activePost && props.activePost.id === post.id}
+          post={post}
+          onPostClick={props.onPostClick}
+        />
       ))}
     </FillParent>
   )
 }
 
-function PostItem(props: { post: Post; onPostClick: onPostClick }) {
+function PostItem(props: {
+  isActive: boolean
+  post: Post
+  onPostClick: onPostClick
+}) {
   const { post } = props
   const [isAnimating, setIsAnimating] = useState(false)
   const ref = createRef<HTMLLIElement>()
@@ -80,7 +89,11 @@ function PostItem(props: { post: Post; onPostClick: onPostClick }) {
         transform: `translate('0px', '0px')`,
       }}
     >
-      <PostOrb post={post} onClick={props.onPostClick} />
+      <PostOrb
+        post={post}
+        isActive={props.isActive}
+        onClick={props.onPostClick}
+      />
     </li>
   )
 }
@@ -88,6 +101,7 @@ function PostItem(props: { post: Post; onPostClick: onPostClick }) {
 type onPostClick = (post: Post) => any
 
 interface PostsProps {
+  activePost: Post
   posts: Post[]
   onPostClick: onPostClick
 }

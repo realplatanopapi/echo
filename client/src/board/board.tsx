@@ -50,6 +50,7 @@ export default function Board(props: BoardProps) {
         </Suspense>
       </div>
       <Posts
+        activePost={postDetails}
         posts={props.posts}
         onPostClick={post => {
           setPostDetails(post)

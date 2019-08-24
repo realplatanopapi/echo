@@ -1,12 +1,16 @@
 import React from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Post } from '../types'
 
 const size = '1.5em'
 
-const StyledPostIndicator = styled.div`
+interface StyledPostIndicatorProps {
+  isActive: boolean
+}
+
+const StyledPostIndicator = styled.div<StyledPostIndicatorProps>`
   border: 0.075em solid currentColor;
   border-radius: 100%;
   cursor: pointer;
@@ -15,8 +19,19 @@ const StyledPostIndicator = styled.div`
 
   &:focus,
   &:hover {
-    background: blue;
+    ${props =>
+      !props.isActive &&
+      css`
+        border-color: blue;
+      `}
   }
+
+  ${props =>
+    props.isActive &&
+    css`
+      background: blue;
+      border-color: white;
+    `}
 `
 
 export default function PostIndicator(props: PostIndicatorProps) {
@@ -25,6 +40,7 @@ export default function PostIndicator(props: PostIndicatorProps) {
 
   return (
     <StyledPostIndicator
+      isActive={props.isActive}
       onClick={() => props.onClick(post)}
       aria-label={`view post created ${distanceToNow}`}
       tabIndex={0}
@@ -34,6 +50,7 @@ export default function PostIndicator(props: PostIndicatorProps) {
 }
 
 interface PostIndicatorProps {
+  isActive: boolean
   post: Post
   onClick: (post: Post) => any
 }
