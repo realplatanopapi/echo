@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import { createPost as createPostMutation } from '../api'
 import { Coordinates } from '../types'
+import Form from '../form'
 
 export default function CreatePostForm(props: CreatePostFormProps) {
   const [createPost, { loading, error, data }] = useMutation(createPostMutation)
@@ -10,9 +11,8 @@ export default function CreatePostForm(props: CreatePostFormProps) {
   const isSubmitDisabled = loading || content.trim().length === 0
 
   return (
-    <form
-      onSubmit={async event => {
-        event.preventDefault()
+    <Form
+      onSubmit={async () => {
         if (isSubmitDisabled) {
           return
         }
@@ -39,7 +39,7 @@ export default function CreatePostForm(props: CreatePostFormProps) {
       <button type="submit" disabled={isSubmitDisabled}>
         {loading ? 'loading...' : 'dispatch'}
       </button>
-    </form>
+    </Form>
   )
 }
 
