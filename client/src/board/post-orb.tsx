@@ -4,18 +4,17 @@ import styled, { css } from 'styled-components'
 
 import { Post } from '../types'
 
-const size = '1.5em'
-
 interface StyledPostIndicatorProps {
   isActive: boolean
+  size: number
 }
 
 const StyledPostIndicator = styled.div<StyledPostIndicatorProps>`
   border: 0.075em solid currentColor;
   border-radius: 100%;
   cursor: pointer;
-  height: ${size};
-  width: ${size};
+  height: ${props => props.size}em;
+  width: ${props => props.size}em;
 
   &:focus,
   &:hover {
@@ -37,9 +36,11 @@ const StyledPostIndicator = styled.div<StyledPostIndicatorProps>`
 export default function PostIndicator(props: PostIndicatorProps) {
   const { post } = props
   const distanceToNow = formatDistanceToNow(new Date(post.createdAt))
+  const size = props.post.children.length * 0.25 + 1.5
 
   return (
     <StyledPostIndicator
+      size={size}
       isActive={props.isActive}
       onClick={() => props.onClick(post)}
       aria-label={`view post created ${distanceToNow}`}
