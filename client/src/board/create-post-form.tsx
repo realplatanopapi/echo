@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 import { createPost as createPostMutation, getNearbyPosts } from '../api'
 import { Coordinates, Post } from '../types'
 import Form from '../components/form'
+import Button from '../components/button'
 
 export default function CreatePostForm(props: CreatePostFormProps) {
   const [createPost, { loading, error, data }] = useMutation(createPostMutation)
@@ -48,10 +49,10 @@ export default function CreatePostForm(props: CreatePostFormProps) {
         value={content}
         onChange={event => setContent(event.target.value)}
       />
-      <button type="submit" disabled={isSubmitDisabled}>
+      <Button type="submit" disabled={isSubmitDisabled}>
         {loading ? 'loading...' : 'dispatch'}
-      </button>
-      {props.onCancel && <button onClick={props.onCancel}>cancel</button>}
+      </Button>
+      {props.onCancel && <Button onClick={props.onCancel}>cancel</Button>}
     </Form>
   )
 }

@@ -3,6 +3,7 @@ import React from 'react'
 import { Post, Coordinates } from '../types'
 import { formatDistanceToNow } from 'date-fns'
 import CreatePostForm from './create-post-form'
+import Button from '../components/button'
 
 export default function PostDetails(props: PostDetailsProps) {
   const { post } = props
@@ -13,7 +14,7 @@ export default function PostDetails(props: PostDetailsProps) {
       <p>{formatDistanceToNow(new Date(post.createdAt))}</p>
       {!props.isChildPost && (
         <>
-          <button onClick={props.onExit}>close</button>
+          <Button onClick={props.onExit}>close</Button>
           <CreatePostForm
             parentPostId={post.id}
             coordinates={props.coordinates}

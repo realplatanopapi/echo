@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState } from 'react'
 
 import { Post, Coordinates } from '../types'
 import Posts from './posts'
+import Button from '../components/button'
 import Loading from '../components/loading'
 
 const CreatePostForm = lazy(() => import('./create-post-form'))
@@ -19,13 +20,13 @@ export default function Board(props: BoardProps) {
         }}
       >
         <Suspense fallback={<Loading />}>
-          <button
+          <Button
             onClick={() => {
               setIsCreatingPost(true)
             }}
           >
             create post
-          </button>
+          </Button>
           {isCreatingPost && (
             <CreatePostForm
               coordinates={props.coordinates}

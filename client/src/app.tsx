@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState } from 'react'
 import styled from 'styled-components'
 
 import { Coordinates } from './types'
-import Loading from './loading'
+import Loading from './components/loading'
 
 const TitleScreen = React.lazy(() => import('./title-screen'))
 const Board = React.lazy(() => import('./board'))
