@@ -42,7 +42,9 @@ export default function CreatePostForm(props: CreatePostFormProps) {
 
         setContent('')
 
-        props.onSubmit(data.createPost as Post)
+        if (props.onSubmit) {
+          props.onSubmit(data.createPost as Post)
+        }
       }}
     >
       <textarea
@@ -60,6 +62,6 @@ export default function CreatePostForm(props: CreatePostFormProps) {
 interface CreatePostFormProps {
   coordinates: Coordinates
   parentPostId?: string
-  onSubmit: (post: Post) => void
+  onSubmit?: (post: Post) => void
   onCancel?: () => any
 }

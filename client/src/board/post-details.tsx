@@ -18,9 +18,6 @@ export default function PostDetails(props: PostDetailsProps) {
           <CreatePostForm
             parentPostId={post.id}
             coordinates={props.coordinates}
-            onSubmit={() => {
-              console.log('do something!!!')
-            }}
           />
         </>
       )}
