@@ -12,50 +12,53 @@ export default function CreatePostForm(props: CreatePostFormProps) {
   const isSubmitDisabled = loading || content.trim().length === 0
 
   return (
-    <Form
-      onSubmit={async () => {
-        if (isSubmitDisabled) {
-          return
-        }
+    <>
+      <h2>{props.parentPostId ? 'Add a comment' : 'Create post'}</h2>
+      <Form
+        onSubmit={async () => {
+          if (isSubmitDisabled) {
+            return
+          }
 
-        const { data } = await createPost({
-          variables: {
-            input: {
-              content,
-              latitude: props.coordinates.latitude,
-              longitude: props.coordinates.longitude,
-              parentId: props.parentPostId,
-            },
-          },
-          refetchQueries: [
-            {
-              query: getNearbyPosts,
-              variables: {
-                query: {
-                  latitude: props.coordinates.latitude,
-                  longitude: props.coordinates.longitude,
-                },
+          const { data } = await createPost({
+            variables: {
+              input: {
+                content,
+                latitude: props.coordinates.latitude,
+                longitude: props.coordinates.longitude,
+                parentId: props.parentPostId,
               },
             },
-          ],
-        })
+            refetchQueries: [
+              {
+                query: getNearbyPosts,
+                variables: {
+                  query: {
+                    latitude: props.coordinates.latitude,
+                    longitude: props.coordinates.longitude,
+                  },
+                },
+              },
+            ],
+          })
 
-        setContent('')
+          setContent('')
 
-        if (props.onSubmit) {
-          props.onSubmit(data.createPost as Post)
-        }
-      }}
-    >
-      <textarea
-        value={content}
-        onChange={event => setContent(event.target.value)}
-      />
-      <Button type="submit" disabled={isSubmitDisabled}>
-        {loading ? 'loading...' : 'dispatch'}
-      </Button>
-      {props.onCancel && <Button onClick={props.onCancel}>cancel</Button>}
-    </Form>
+          if (props.onSubmit) {
+            props.onSubmit(data.createPost as Post)
+          }
+        }}
+      >
+        <textarea
+          value={content}
+          onChange={event => setContent(event.target.value)}
+        />
+        <Button type="submit" disabled={isSubmitDisabled}>
+          {loading ? 'loading...' : 'dispatch'}
+        </Button>
+        {props.onCancel && <Button onClick={props.onCancel}>cancel</Button>}
+      </Form>
+    </>
   )
 }
 

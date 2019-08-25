@@ -10,6 +10,7 @@ export default function PostDetails(props: PostDetailsProps) {
 
   return (
     <>
+      {!props.isChildPost && <h2>Post</h2>}
       <p>{post.content}</p>
       <p>
         <small>{formatDistanceToNow(new Date(post.createdAt))} ago</small>
