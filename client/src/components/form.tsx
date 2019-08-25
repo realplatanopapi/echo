@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { keyCode } from '../util/key-codes'
 
 export default function Form(props: FormProps) {
+  const [didMount, setDidMount] = useState(false)
+
   const { onSubmit, ...otherProps } = props
   const formRef = React.createRef<HTMLFormElement>()
 
@@ -16,6 +18,14 @@ export default function Form(props: FormProps) {
     const formEl = formRef.current
     if (!formEl) {
       return
+    }
+
+    if (!didMount) {
+      const firstInput = formEl.querySelector('input,textarea')
+      if (firstInput) {
+        ;(firstInput as HTMLElement).focus()
+      }
+      setDidMount(true)
     }
 
     formEl.addEventListener('keydown', onKeyDown)
