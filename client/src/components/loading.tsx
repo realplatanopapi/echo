@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CenterContent, FillParent } from './styles'
+import { CenterContent, FillParent } from '../styles'
 
 export default function Loading() {
   const [shouldRender, setShouldRender] = useState(false)

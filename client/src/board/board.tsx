@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState } from 'react'
 
 import { Post, Coordinates } from '../types'
 import Posts from './posts'
-import Loading from '../loading'
+import Loading from '../components/loading'
 
 const CreatePostForm = lazy(() => import('./create-post-form'))
 const PostDetails = lazy(() => import('./post-details'))

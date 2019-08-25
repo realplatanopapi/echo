@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { keyCode } from './key-codes'
+import { keyCode } from '../util/key-codes'
 
 export default function Form(props: FormProps) {
   const { onSubmit, ...otherProps } = props

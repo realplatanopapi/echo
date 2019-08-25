@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import { createPost as createPostMutation, getNearbyPosts } from '../api'
 import { Coordinates, Post } from '../types'
-import Form from '../form'
+import Form from '../components/form'
 
 export default function CreatePostForm(props: CreatePostFormProps) {
   const [createPost, { loading, error, data }] = useMutation(createPostMutation)
