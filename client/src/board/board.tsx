@@ -31,7 +31,10 @@ const CreatePostButton = styled(Button)<CreatePostButtonProps>`
 
 export default function Board(props: BoardProps) {
   const [isCreatingPost, setIsCreatingPost] = useState(false)
-  const [postDetails, setPostDetails] = useState<Post | null>(null)
+  const [postDetailsId, setPostDetailsId] = useState<string | null>(null)
+  const activePost = postDetailsId
+    ? props.posts.find(post => post.id === postDetailsId)
+    : null
 
   return (
     <>
@@ -53,31 +56,31 @@ export default function Board(props: BoardProps) {
               }}
               onSubmit={post => {
                 setIsCreatingPost(false)
-                setPostDetails(post)
+                setPostDetailsId(post.id)
                 props.onCreatePost()
               }}
             />
           )}
-          {postDetails && (
+          {activePost && (
             <PostDetails
               coordinates={props.coordinates}
-              post={postDetails}
+              post={props.posts.find(post => post.id === postDetailsId)}
               onExit={() => {
-                setPostDetails(null)
+                setPostDetailsId(null)
               }}
             />
           )}
         </Suspense>
       </div>
       <Posts
-        activePost={postDetails}
+        activePost={activePost}
         posts={props.posts}
         onPostClick={post => {
-          if (postDetails === post) {
-            return setPostDetails(null)
+          if (postDetailsId === post.id) {
+            return setPostDetailsId(null)
           }
 
-          setPostDetails(post)
+          setPostDetailsId(post.id)
         }}
       />
       <CreatePostButton
