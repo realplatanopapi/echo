@@ -13,6 +13,7 @@ export default function BoardContainer(props: BoardContainerProps) {
         longitude: props.coordinates.longitude,
       },
     },
+    pollInterval: 1000,
   })
 
   const posts = data && data.getNearbyPosts
