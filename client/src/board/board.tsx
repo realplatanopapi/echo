@@ -37,7 +37,11 @@ export default function Board(props: BoardProps) {
     <>
       <div
         style={{
-          position: 'absolute',
+          left: 0,
+          maxHeight: '100vh',
+          overflow: 'auto',
+          position: 'fixed',
+          top: 0,
         }}
       >
         <Suspense fallback={<Loading />}>
