@@ -37,7 +37,9 @@ export const GlobalStyles = createGlobalStyle`
   h1,
   h2,
   p {
-    margin-top: 0;
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   h1 {

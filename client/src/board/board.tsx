@@ -81,9 +81,10 @@ export default function Board(props: BoardProps) {
 
 const Aside = styled.aside`
   background: rgba(0, 0, 0, 0.5);
+  border-right: 1px solid white;
   height: 100%;
   left: 0;
-  max-width: 95vw;
+  max-width: 100vw;
   overflow: auto;
   padding: 1em;
   position: fixed;

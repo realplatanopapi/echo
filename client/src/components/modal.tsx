@@ -11,10 +11,12 @@ const Overlay = styled.div`
   position: fixed;
   top: 0;
   width: 100vw;
+  z-index: 2;
 `
 
 const Children = styled.div`
   background: black;
+  border: 1px solid white;
   max-width: 95%;
   padding: 1em;
   width: 420px;
