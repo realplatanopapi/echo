@@ -5,6 +5,7 @@ import { Post, Coordinates } from '../types'
 import Posts from './posts'
 import Button from '../components/button'
 import Loading from '../components/loading'
+import Modal from '../components/modal'
 
 const CreatePostForm = lazy(() => import('./create-post-form'))
 const PostDetails = lazy(() => import('./post-details'))
@@ -18,22 +19,9 @@ export default function Board(props: BoardProps) {
 
   return (
     <>
-      {isCreatingPost || activePost ? (
+      {activePost ? (
         <Aside>
           <Suspense fallback={<Loading />}>
-            {isCreatingPost && (
-              <CreatePostForm
-                coordinates={props.coordinates}
-                onCancel={() => {
-                  setIsCreatingPost(false)
-                }}
-                onSubmit={post => {
-                  setIsCreatingPost(false)
-                  setPostDetailsId(post.id)
-                  props.onCreatePost()
-                }}
-              />
-            )}
             {activePost && (
               <PostDetails
                 coordinates={props.coordinates}
@@ -66,6 +54,27 @@ export default function Board(props: BoardProps) {
       >
         +
       </CreatePostButton>
+      <Suspense fallback={<Loading />}>
+        {isCreatingPost && (
+          <Modal
+            onExit={() => {
+              setIsCreatingPost(false)
+            }}
+          >
+            <CreatePostForm
+              coordinates={props.coordinates}
+              onCancel={() => {
+                setIsCreatingPost(false)
+              }}
+              onSubmit={post => {
+                setIsCreatingPost(false)
+                setPostDetailsId(post.id)
+                props.onCreatePost()
+              }}
+            />
+          </Modal>
+        )}
+      </Suspense>
     </>
   )
 }
