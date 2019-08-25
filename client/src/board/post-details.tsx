@@ -11,7 +11,9 @@ export default function PostDetails(props: PostDetailsProps) {
   return (
     <>
       <p>{post.content}</p>
-      <p>{formatDistanceToNow(new Date(post.createdAt))}</p>
+      <p>
+        <small>{formatDistanceToNow(new Date(post.createdAt))} ago</small>
+      </p>
       {!props.isChildPost && (
         <>
           <Button onClick={props.onExit}>close</Button>
@@ -21,15 +23,19 @@ export default function PostDetails(props: PostDetailsProps) {
           />
         </>
       )}
-      {props.post.children &&
-        props.post.children.map(childPost => (
-          <PostDetails
-            key={childPost.id}
-            {...props}
-            post={childPost}
-            isChildPost={true}
-          />
-        ))}
+      {props.post.children && props.post.children.length > 0 && (
+        <>
+          <h2>Comments</h2>
+          {props.post.children.map(childPost => (
+            <PostDetails
+              key={childPost.id}
+              {...props}
+              post={childPost}
+              isChildPost={true}
+            />
+          ))}
+        </>
+      )}
     </>
   )
 }
