@@ -1,20 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import Button from './components/button'
 import { Coordinates } from './types'
 import { CenterContent, FillParent } from './styles'
 import useGeolocation from './hooks/use-geolocation'
 
-interface TitleScreenProps {
-  onGetCoordinates: (coordinates: Coordinates) => void
-}
+const Wrapper = styled.div`
+  text-align: center;
+`
 
 export default function TitleScreen(props: TitleScreenProps) {
   const geolocation = useGeolocation()
 
   return (
     <CenterContent as={FillParent}>
-      <div>
+      <Wrapper>
         <h1>Echo</h1>
         <Button
           disabled={geolocation.isLoading}
@@ -28,7 +29,16 @@ export default function TitleScreen(props: TitleScreenProps) {
         >
           {geolocation.isLoading ? 'Loading...' : 'where u at'}
         </Button>
-      </div>
+        {geolocation.error && (
+          <p>
+            <strong>couldn't get your location. try again later</strong>
+          </p>
+        )}
+      </Wrapper>
     </CenterContent>
   )
+}
+
+interface TitleScreenProps {
+  onGetCoordinates: (coordinates: Coordinates) => void
 }
