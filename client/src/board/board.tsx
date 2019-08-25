@@ -34,6 +34,15 @@ export default function Board(props: BoardProps) {
           </Suspense>
         </Aside>
       ) : null}
+      <CreatePostButton
+        isActive={isCreatingPost}
+        aria-label="create post"
+        onClick={() => {
+          setIsCreatingPost(!isCreatingPost)
+        }}
+      >
+        +
+      </CreatePostButton>
       <Posts
         activePost={activePost}
         posts={props.posts}
@@ -45,15 +54,6 @@ export default function Board(props: BoardProps) {
           setPostDetailsId(post.id)
         }}
       />
-      <CreatePostButton
-        isActive={isCreatingPost}
-        aria-label="create post"
-        onClick={() => {
-          setIsCreatingPost(!isCreatingPost)
-        }}
-      >
-        +
-      </CreatePostButton>
       <Suspense fallback={<Loading />}>
         {isCreatingPost && (
           <Modal
