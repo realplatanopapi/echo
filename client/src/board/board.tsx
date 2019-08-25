@@ -9,26 +9,6 @@ import Loading from '../components/loading'
 const CreatePostForm = lazy(() => import('./create-post-form'))
 const PostDetails = lazy(() => import('./post-details'))
 
-const CreatePostButton = styled(Button)<CreatePostButtonProps>`
-  align-items: center;
-  display: flex;
-  font-weight: bold;
-  height: 2em;
-  justify-content: center;
-  left: 50%;
-  line-height: 1;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 2.5em;
-
-  ${props =>
-    props.isActive &&
-    css`
-      background: blue;
-    `}
-`
-
 export default function Board(props: BoardProps) {
   const [isCreatingPost, setIsCreatingPost] = useState(false)
   const [postDetailsId, setPostDetailsId] = useState<string | null>(null)
@@ -38,40 +18,34 @@ export default function Board(props: BoardProps) {
 
   return (
     <>
-      <div
-        style={{
-          left: 0,
-          maxHeight: '100vh',
-          overflow: 'auto',
-          position: 'fixed',
-          top: 0,
-        }}
-      >
-        <Suspense fallback={<Loading />}>
-          {isCreatingPost && (
-            <CreatePostForm
-              coordinates={props.coordinates}
-              onCancel={() => {
-                setIsCreatingPost(false)
-              }}
-              onSubmit={post => {
-                setIsCreatingPost(false)
-                setPostDetailsId(post.id)
-                props.onCreatePost()
-              }}
-            />
-          )}
-          {activePost && (
-            <PostDetails
-              coordinates={props.coordinates}
-              post={props.posts.find(post => post.id === postDetailsId)}
-              onExit={() => {
-                setPostDetailsId(null)
-              }}
-            />
-          )}
-        </Suspense>
-      </div>
+      {isCreatingPost || activePost ? (
+        <Aside>
+          <Suspense fallback={<Loading />}>
+            {isCreatingPost && (
+              <CreatePostForm
+                coordinates={props.coordinates}
+                onCancel={() => {
+                  setIsCreatingPost(false)
+                }}
+                onSubmit={post => {
+                  setIsCreatingPost(false)
+                  setPostDetailsId(post.id)
+                  props.onCreatePost()
+                }}
+              />
+            )}
+            {activePost && (
+              <PostDetails
+                coordinates={props.coordinates}
+                post={props.posts.find(post => post.id === postDetailsId)}
+                onExit={() => {
+                  setPostDetailsId(null)
+                }}
+              />
+            )}
+          </Suspense>
+        </Aside>
+      ) : null}
       <Posts
         activePost={activePost}
         posts={props.posts}
@@ -95,6 +69,39 @@ export default function Board(props: BoardProps) {
     </>
   )
 }
+
+const Aside = styled.aside`
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  max-width: 95vw;
+  overflow: auto;
+  padding: 1em;
+  position: fixed;
+  top: 0;
+  width: 420px;
+  z-index: 1;
+`
+
+const CreatePostButton = styled(Button)<CreatePostButtonProps>`
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  height: 2em;
+  justify-content: center;
+  left: 50%;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5em;
+
+  ${props =>
+    props.isActive &&
+    css`
+      background: blue;
+    `}
+`
 
 interface BoardProps {
   coordinates: Coordinates
