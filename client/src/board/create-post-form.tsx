@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/react-hooks'
+import styled from 'styled-components'
 
 import { createPost as createPostMutation, getNearbyPosts } from '../api'
 import { Coordinates, Post } from '../types'
@@ -49,7 +50,7 @@ export default function CreatePostForm(props: CreatePostFormProps) {
           }
         }}
       >
-        <textarea
+        <Textarea
           value={content}
           onChange={event => setContent(event.target.value)}
         />
@@ -61,6 +62,14 @@ export default function CreatePostForm(props: CreatePostFormProps) {
     </>
   )
 }
+
+const Textarea = styled.textarea`
+  display: block;
+  margin-bottom: 1em;
+  min-height: 6em;
+  resize: vertical;
+  width: 100%;
+`
 
 interface CreatePostFormProps {
   coordinates: Coordinates
