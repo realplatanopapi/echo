@@ -35,8 +35,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h1,
+  h2,
   p {
     margin-top: 0;
+  }
+
+  h1 {
+    text-align: center;
   }
 
   ul {
