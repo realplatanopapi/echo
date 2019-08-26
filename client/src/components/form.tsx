@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { keyCode } from '../util/key-codes'
+import keyCodes from '../util/key-codes'
 
 export default function Form(props: FormProps) {
   const [didMount, setDidMount] = useState(false)
@@ -9,7 +9,7 @@ export default function Form(props: FormProps) {
   const formRef = React.createRef<HTMLFormElement>()
 
   const onKeyDown = (event: KeyboardEvent) => {
-    if (event.metaKey && event.keyCode === keyCode.enter) {
+    if (event.metaKey && event.keyCode === keyCodes.enter) {
       onSubmit()
     }
   }
