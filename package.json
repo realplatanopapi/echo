@@ -15,7 +15,7 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.0.1",
     "apollo-boost": "^0.4.4",
-    "apollo-server-koa": "^2.9.0",
+    "apollo-server-koa": "^2.14.2",
     "class-validator": "^0.10.0",
     "convict": "^5.1.0",
     "date-fns": "^2.0.1",
