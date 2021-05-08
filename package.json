@@ -30,7 +30,7 @@
     "react-dom": "^16.9.0",
     "source-map-support": "^0.5.13",
     "styled-components": "^4.3.2",
-    "typeorm": "^0.2.18"
+    "typeorm": "^0.2.25"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
